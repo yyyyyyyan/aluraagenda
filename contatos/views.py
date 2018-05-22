@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from .models import Contatos
 
 def index(request):
-	html = "<html><body>"
+	html = "<html><body><h1>Lista de Contatos</h1>"
 	contatos = Contatos.objects.all()
 	for contato in contatos:
 		html += "{} - {}<br>".format(contato.nome, contato.telefone)
@@ -15,9 +15,9 @@ def get_contato_by_id(request, contato_id):
 	try:
 		contato = Contatos.objects.get(id=contato_id)
 	except:
-		html += "Contato não encontrado :("
+		html += "<h1>Contato não encontrado :(</h1>"
 	else:
-		html += "{} - {}<br>".format(contato.nome, contato.telefone)
+		html += "{} - {}".format(contato.nome, contato.telefone)
 	finally:
 		html += "</body></html>"
 
